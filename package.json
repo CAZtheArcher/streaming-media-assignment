@@ -1,0 +1,18 @@
+{
+  "name": "streaming-media-assignment",
+  "version": "1.0.0",
+  "description": "the streaming media assignment for IGME 430, by Colin Zopf",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests Complete\""
+  },
+  "author": "Colin Zopf",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.30.0"
+  }
+}
