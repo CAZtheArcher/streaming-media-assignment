@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const loadFile = (request, response, filePath, contentType) => {
-  const file = path.resolve(__dirname, filePath);
+const loadFile = (request, response, content, contentType) => {
+  const file = path.resolve(__dirname, content);
+  console.log(file);
 
   fs.stat(file, (err, stats) => {
     if (err) {
@@ -31,7 +32,7 @@ const loadFile = (request, response, filePath, contentType) => {
     const chunksize = (end - start) + 1;
 
     response.writeHead(206, {
-      'Content-Range': `bytes  ${start}-${end}/$total`,
+      'Content-Range': `bytes ${start}-${end}/${total}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunksize,
       'Content-Type': contentType,
@@ -47,6 +48,8 @@ const loadFile = (request, response, filePath, contentType) => {
       response.end(streamErr);
     });
 
+    console.log(stream);
+
     return stream;
   });
 };
@@ -60,7 +63,7 @@ const getParty = (request, response) => {
 };
 
 const getBling = (request, response) => {
-  loadFile(request, response, '../client/bling.mp3', 'audio.mpeg');
+  loadFile(request, response, '../client/bling.mp3', 'audio/mpeg');
 };
 const getBird = (request, response) => {
   loadFile(request, response, '../client/bird.mp4', 'video/mp4');
