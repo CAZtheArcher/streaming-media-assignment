@@ -3,7 +3,6 @@ const path = require('path');
 
 const loadFile = (request, response, content, contentType) => {
   const file = path.resolve(__dirname, content);
-  console.log(file);
 
   fs.stat(file, (err, stats) => {
     if (err) {
@@ -47,8 +46,6 @@ const loadFile = (request, response, content, contentType) => {
     stream.on('error', (streamErr) => {
       response.end(streamErr);
     });
-
-    console.log(stream);
 
     return stream;
   });
